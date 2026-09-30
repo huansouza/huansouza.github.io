@@ -6,188 +6,114 @@
 
   <!-- ✏️ EDIT: your name and a one-line description (shown in browser tabs and search results) -->
   <title>Your Name</title>
-  <meta name="description" content="Your Name — PhD student at Boston University working on ...">
+  <meta name="description" content="Your Name — PhD student at Boston University.">
 
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <!-- Prepares the intro animation (skipped for visitors who prefer reduced motion). -->
+  <script>
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('intro');
+      setTimeout(function () { document.documentElement.classList.remove('intro'); }, 8000); // safety net
+    }
+  </script>
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <!-- ✏️ EDIT: your name -->
-      <a class="site-name" href="#top">Your Name</a>
-      <nav class="site-nav">
-        <a href="#about">About</a>
-        <a href="#news">News</a>
-        <a href="#publications">Publications</a>
-        <a href="#projects">Projects</a>
-        <a href="cv.pdf">CV</a>
-        <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
-          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg>
-        </button>
-      </nav>
-    </div>
+  <!-- Intro overlay: boot log + scan line. Filled in by script.js. -->
+  <div class="boot" aria-hidden="true">
+    <div class="boot-bg"></div>
+    <div class="scan"></div>
+    <div class="boot-log mono"></div>
+    <div class="boot-skip mono">[ click to skip ]</div>
+  </div>
+
+  <!-- ✏️ EDIT: the small labels along the top -->
+  <header class="bar mono">
+    <span data-seq data-scramble>[ SUBJECT 0001 ]</span>
+    <span class="bar-mid" data-seq data-scramble>BOSTON UNIVERSITY</span>
+    <span data-seq><span class="live-dot"></span><span id="clock">--:--:--</span> UTC</span>
   </header>
 
-  <main id="top" class="wrap">
+  <main class="layout">
 
     <!-- ============================================================
-         ABOUT
-         ✏️ EDIT: replace images/profile.svg with your photo
-                  (e.g. images/profile.jpg — a square photo works best)
+         PHOTO
+         ✏️ EDIT: put your photo in the images folder and change the
+            src below (e.g. images/profile.jpg). A 4:5 portrait works best.
          ============================================================ -->
-    <section id="about" class="about">
-      <img class="profile-photo" src="images/profile.svg" alt="Photo of Your Name">
-
-      <div class="about-text">
-        <h1>Your Name</h1>
-        <p class="role">PhD Student · Department of Physics · Boston University</p>
-
-        <p>
-          Hi! I'm a PhD student at <a href="https://www.bu.edu">Boston University</a>,
-          advised by <a href="#">Prof. Advisor Name</a>. My research focuses on
-          <strong>topic one</strong> and <strong>topic two</strong>. Replace this paragraph
-          with two or three sentences about what you work on and why it's interesting.
-        </p>
-        <p>
-          Before BU, I studied ... at ... . Outside of research, I enjoy ... .
-        </p>
-
-        <!-- ✏️ EDIT: your links. Delete any line you don't need. -->
-        <ul class="links">
-          <li><a href="mailto:you@bu.edu">Email</a></li>
-          <li><a href="https://scholar.google.com/">Google Scholar</a></li>
-          <li><a href="https://github.com/">GitHub</a></li>
-          <li><a href="https://www.linkedin.com/">LinkedIn</a></li>
-          <li><a href="cv.pdf">CV</a></li>
-        </ul>
+    <figure class="portrait">
+      <div class="frame">
+        <img id="portrait" src="images/profile.svg" alt="Photo of Your Name">
+        <canvas class="portrait-canvas" aria-hidden="true"></canvas>
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
       </div>
-    </section>
+      <figcaption class="mono" data-seq data-scramble>FIG. 01 — SUBJECT RECONSTRUCTED</figcaption>
+    </figure>
 
-    <!-- ============================================================
-         NEWS
-         ✏️ EDIT: add new items at the top. Copy one <li> block to add more.
-         ============================================================ -->
-    <section id="news">
-      <h2>News</h2>
-      <ul class="news">
-        <li>
-          <time>Sep 2026</time>
-          <span>Our paper <em>“Paper Title”</em> was accepted at <strong>Conference 2026</strong>!</span>
+    <section class="info">
+      <!-- ✏️ EDIT: your position -->
+      <p class="kicker mono" data-seq data-scramble>PHD STUDENT · BOSTON UNIVERSITY</p>
+
+      <!-- ✏️ EDIT: your name -->
+      <h1 class="name" data-name>Your Name</h1>
+
+      <hr data-line>
+
+      <!-- ============================================================
+           ABOUT
+           ✏️ EDIT: a short description of you (2–4 sentences)
+           ============================================================ -->
+      <h2 class="label mono" data-seq data-scramble>About</h2>
+      <p class="about" data-seq>
+        I'm a PhD student at Boston University advised by Prof. Advisor Name. Replace this
+        with two to four sentences about who you are: your background, what drives your research,
+        and what you're up to now.
+      </p>
+
+      <hr data-line>
+
+      <!-- ============================================================
+           RESEARCH INTERESTS
+           ✏️ EDIT: copy one <li> per interest (they number themselves).
+           ============================================================ -->
+      <h2 class="label mono" data-seq data-scramble>Research interests</h2>
+      <ol class="interests">
+        <li data-seq>
+          <h3>Research interest one</h3>
+          <p>One line on what you study here and why it matters.</p>
         </li>
-        <li>
-          <time>Jun 2026</time>
-          <span>Gave a talk on ... at ... .</span>
+        <li data-seq>
+          <h3>Research interest two</h3>
+          <p>One line on what you study here and why it matters.</p>
         </li>
-        <li>
-          <time>Jan 2026</time>
-          <span>Started a summer internship at ... .</span>
+        <li data-seq>
+          <h3>Research interest three</h3>
+          <p>One line on what you study here and why it matters.</p>
         </li>
+      </ol>
+
+      <hr data-line>
+
+      <!-- ✏️ EDIT: your links. Delete any you don't need (or the whole list). -->
+      <ul class="links mono" data-seq>
+        <li><a href="mailto:you@bu.edu">Email</a></li>
+        <li><a href="https://scholar.google.com/">Scholar</a></li>
+        <li><a href="https://github.com/">GitHub</a></li>
       </ul>
     </section>
-
-    <!-- ============================================================
-         PUBLICATIONS
-         ✏️ EDIT: copy one <article class="pub"> block per paper.
-            Wrap your own name in <span class="me">…</span> to bold it.
-            Delete any link (PDF / arXiv / Code …) you don't have.
-         ============================================================ -->
-    <section id="publications">
-      <h2>Publications</h2>
-      <p class="section-note">* denotes equal contribution. See also <a href="https://scholar.google.com/">Google Scholar</a>.</p>
-
-      <article class="pub">
-        <h3 class="pub-title">Title of Your Most Recent Paper</h3>
-        <p class="pub-authors"><span class="me">Your Name</span>*, Coauthor One*, Coauthor Two, Advisor Name</p>
-        <p class="pub-venue">Conference or Journal Name, 2026</p>
-        <p class="pub-links">
-          <a href="#">PDF</a>
-          <a href="#">arXiv</a>
-          <a href="#">Code</a>
-        </p>
-      </article>
-
-      <article class="pub">
-        <h3 class="pub-title">Title of Another Paper</h3>
-        <p class="pub-authors">Coauthor One, <span class="me">Your Name</span>, Advisor Name</p>
-        <p class="pub-venue">Journal Name, 2025</p>
-        <p class="pub-links">
-          <a href="#">PDF</a>
-          <a href="#">arXiv</a>
-        </p>
-      </article>
-
-      <article class="pub">
-        <h3 class="pub-title">Title of a Preprint</h3>
-        <p class="pub-authors"><span class="me">Your Name</span>, Advisor Name</p>
-        <p class="pub-venue">Preprint, 2025</p>
-        <p class="pub-links">
-          <a href="#">arXiv</a>
-        </p>
-      </article>
-    </section>
-
-    <!-- ============================================================
-         PROJECTS
-         ✏️ EDIT: copy one <article class="project"> block per project.
-            The image is optional — delete the <img> line if you don't have one.
-         ============================================================ -->
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="projects">
-        <article class="project">
-          <h3>Project One</h3>
-          <p>One or two sentences describing the project, the question it answers, and what you found.</p>
-          <p class="pub-links"><a href="#">Paper</a> <a href="#">Code</a></p>
-        </article>
-
-        <article class="project">
-          <h3>Project Two</h3>
-          <p>One or two sentences describing the project, the question it answers, and what you found.</p>
-          <p class="pub-links"><a href="#">Code</a></p>
-        </article>
-
-        <article class="project">
-          <h3>Project Three</h3>
-          <p>One or two sentences describing the project, the question it answers, and what you found.</p>
-          <p class="pub-links"><a href="#">Slides</a></p>
-        </article>
-      </div>
-    </section>
-
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap">
-      <!-- ✏️ EDIT: your name -->
-      <p>© <span id="year">2026</span> Your Name · Last updated September 2026</p>
-    </div>
+  <!-- ✏️ EDIT: your name -->
+  <footer class="foot mono" data-seq>
+    © <span id="year">2026</span> Your Name — end of transmission<span class="cursor">_</span>
   </footer>
 
-  <script>
-    // Dark-mode toggle. Remembers your choice; otherwise follows the system setting.
-    (function () {
-      var root = document.documentElement;
-      try {
-        var saved = localStorage.getItem('theme');
-        if (saved) root.setAttribute('data-theme', saved);
-      } catch (e) {}
-
-      document.querySelector('.theme-toggle').addEventListener('click', function () {
-        var current = root.getAttribute('data-theme') ||
-          (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        var next = current === 'dark' ? 'light' : 'dark';
-        root.setAttribute('data-theme', next);
-        try { localStorage.setItem('theme', next); } catch (e) {}
-      });
-
-      document.getElementById('year').textContent = new Date().getFullYear();
-    })();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

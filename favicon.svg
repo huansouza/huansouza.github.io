@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#b3261e"/>
+  <rect width="64" height="64" rx="10" fill="#0a0a09"/>
+  <rect x="6.5" y="6.5" width="51" height="51" rx="5" fill="none" stroke="#ff3d1f" stroke-width="1.5"/>
   <!-- ✏️ EDIT: change "YN" to your initials -->
-  <text x="32" y="42" text-anchor="middle" font-family="Georgia, serif" font-size="28" font-weight="600" fill="#fff">YN</text>
+  <text x="32" y="40" text-anchor="middle" font-family="Menlo, monospace" font-size="22" fill="#dcd9d0">YN</text>
 </svg>
