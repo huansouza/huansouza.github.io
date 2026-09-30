@@ -5,18 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- ✏️ EDIT: your name and a one-line description (shown in browser tabs and search results) -->
-  <title>Your Name</title>
-  <meta name="description" content="Your Name — PhD student at Boston University.">
+  <title>Huan Souza</title>
+  <meta name="description" content="Huan Souza — Boston University.">
 
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=Inter+Tight:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
   <link rel="stylesheet" href="style.css">
 
-  <!-- Prepares the intro animation (skipped for visitors who prefer reduced motion). -->
+  <!-- Prepares the intro animation: plays once per visit (not again when coming back from
+       the Misc page), and is skipped for visitors who prefer reduced motion. -->
   <script>
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var seen = false;
+    try { seen = sessionStorage.getItem('introSeen') === '1'; sessionStorage.setItem('introSeen', '1'); } catch (e) {}
+    if (!seen && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
       document.documentElement.classList.add('intro');
       setTimeout(function () { document.documentElement.classList.remove('intro'); }, 8000); // safety net
     }
@@ -24,16 +28,16 @@
 </head>
 <body>
 
-  <!-- Intro animation: circuits → vines and flowers → website. Drawn by script.js. -->
+  <!-- Intro animation: Sisyphus and his boulder. Drawn by script.js. -->
   <canvas class="genesis" aria-hidden="true"></canvas>
 
   <!-- ✏️ EDIT: your name and links -->
   <header class="top" data-rise>
-    <a class="top-name" href="#">Your Name</a>
+    <a class="top-name" href="./">Huan Souza</a>
     <nav class="top-links">
-      <a href="mailto:you@bu.edu">Email</a>
-      <a href="https://scholar.google.com/">Scholar</a>
-      <a href="https://github.com/">GitHub</a>
+      <a href="misc.html">Misc</a>
+      <a href="mailto:hsouza@bu.edu">Email</a>
+      <a href="https://scholar.google.com/citations?user=upY3qGIAAAAJ&amp;hl=pt-BR">Google Scholar</a>
     </nav>
   </header>
 
@@ -41,12 +45,13 @@
 
     <!-- ============================================================
          PHOTO
-         ✏️ EDIT: put your photo in bloom/images and change the src
-            below (e.g. images/profile.jpg). A 4:5 portrait works best.
+         ✏️ EDIT: to change the photo, put it in sisyphus/images and change the src below.
+            object-position (in style.css, .arch img) controls which part of a tall photo shows.
          ============================================================ -->
     <figure class="portrait" data-rise>
+      <div class="photo">
       <div class="arch">
-        <img src="images/profile.svg" alt="Photo of Your Name">
+        <img src="images/huan.webp" alt="Huan Souza smiling on a white stone staircase">
       </div>
       <!-- small botanical sprig drawn over the frame's corner -->
       <svg class="sprig" viewBox="0 0 120 160" aria-hidden="true">
@@ -56,50 +61,51 @@
         <path d="M60 50 C 46 44, 42 32, 44 22 C 56 28, 62 38, 60 50 Z" />
         <circle cx="92" cy="6" r="4.5" />
       </svg>
+      </div>
+      <!-- ✏️ EDIT: the quote under your photo -->
+      <figcaption class="quote">
+        “All great deeds and all great thoughts have a ridiculous beginning.”
+        <span>— Albert Camus</span>
+      </figcaption>
     </figure>
 
     <section class="info">
       <!-- ✏️ EDIT: your position and name -->
-      <p class="kicker" data-rise>PhD Student · Boston University</p>
-      <h1 class="name" data-rise>Your <em>Name</em></h1>
+      <p class="kicker" data-rise>PhD Candidate · Boston University</p>
+      <h1 class="name" data-rise>Huan <em>Souza</em></h1>
 
       <!-- ============================================================
            ABOUT
            ✏️ EDIT: a short description of you (2–4 sentences)
            ============================================================ -->
-      <p class="about" data-rise>
-        I'm a PhD student at Boston University advised by Prof. Advisor Name. Replace this
-        with two to four sentences about who you are: your background, what drives your research,
-        and what you're up to now.
-      </p>
+      <div class="about" data-rise>
+        <p>
+          I'm a PhD candidate at Boston University advised by
+          <a href="https://www.bu.edu/physics/profile/pankaj-mehta/">Prof. Pankaj Mehta</a>.
+          Lately I've been thinking about protein functionality, diffusion models, stem cells,
+          schooling fishes, and how to describe all of it with thermodynamics and fit computational
+          models that actually help us understand things.
+        </p>
+        <p>Still looking for the solution</p>
+        <!-- math is written in LaTeX and rendered by KaTeX (see bottom of this file) -->
+        <div class="tex">\hat{\theta} \in \left( \arg\min_{\theta} \text{slop}(\theta) \right) \cap \left( \arg\max_{\theta} \text{critical thinking}(\theta) \right)</div>
+      </div>
 
-      <!-- ============================================================
-           RESEARCH INTERESTS
-           ✏️ EDIT: copy one <li> per interest.
-           ============================================================ -->
-      <h2 class="label" data-rise>Research interests</h2>
-      <ul class="interests">
-        <li data-rise>
-          <h3>Research interest one</h3>
-          <p>One line on what you study here and why it matters.</p>
-        </li>
-        <li data-rise>
-          <h3>Research interest two</h3>
-          <p>One line on what you study here and why it matters.</p>
-        </li>
-        <li data-rise>
-          <h3>Research interest three</h3>
-          <p>One line on what you study here and why it matters.</p>
-        </li>
-      </ul>
     </section>
   </main>
 
   <!-- ✏️ EDIT: your name -->
   <footer class="foot" data-rise>
-    © <span id="year">2026</span> Your Name <span class="dot">·</span> grown, not built
+    © <span id="year">2026</span> Huan Souza
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script>
+    // render every <div class="tex"> as a display equation
+    document.querySelectorAll('.tex').forEach(function (el) {
+      if (window.katex) katex.render(el.textContent, el, { displayMode: true, throwOnError: false });
+    });
+  </script>
   <script src="script.js"></script>
 </body>
 </html>

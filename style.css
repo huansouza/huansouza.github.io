@@ -64,6 +64,7 @@ a { color: inherit; text-decoration: none; }
 .top-links { display: flex; gap: 1.6rem; font-size: .9rem; color: var(--muted); }
 .top-links a { transition: color .2s; }
 .top-links a:hover { color: var(--sage-deep); }
+.top-links a[aria-current="page"] { color: var(--ink); border-bottom: 1px solid var(--sage); }
 
 /* ------------------------------------------------------------------
    Main layout
@@ -81,7 +82,8 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* Portrait in an arched frame */
-.portrait { position: relative; margin: 0; }
+.portrait { margin: 0; }
+.photo { position: relative; }
 .arch {
   aspect-ratio: 4 / 5;
   overflow: hidden;
@@ -89,7 +91,29 @@ a { color: inherit; text-decoration: none; }
   background: var(--paper-2);
   box-shadow: 0 1px 0 var(--line), 0 30px 60px -40px rgba(60, 70, 50, .35);
 }
-.arch img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.arch img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 78%; }
+
+.quote {
+  margin: 1.6rem 0 0;
+  padding-left: 1rem;
+  border-left: 1px solid var(--sage);
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: #4a4b45;
+}
+.quote span {
+  display: block;
+  margin-top: .4rem;
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: .75rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
 
 .sprig {
   position: absolute;
@@ -130,6 +154,13 @@ a { color: inherit; text-decoration: none; }
   font-size: 1.08rem;
   color: #4a4b45;
 }
+.about p { margin: 0 0 .9rem; }
+.about a { color: var(--sage-deep); border-bottom: 1px solid #c9d3c4; transition: border-color .2s; }
+.about a:hover { border-color: var(--sage-deep); }
+.about .tex { color: var(--ink); overflow-x: auto; overflow-y: hidden; }
+.about .katex-display { margin: .4rem 0 0; }
+.about .katex { font-size: 1.08em; }
+@media (max-width: 760px) { .about .katex { font-size: .82em; } }
 
 .label {
   display: flex;
@@ -176,6 +207,39 @@ a { color: inherit; text-decoration: none; }
 .foot .dot { color: var(--sage); margin: 0 .3rem; }
 
 /* ------------------------------------------------------------------
+   Misc page
+   ------------------------------------------------------------------ */
+.misc {
+  flex: 1;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: clamp(2rem, 8vh, 5rem) 28px 5rem;
+}
+.misc .name { margin-bottom: .8rem; }
+.misc-intro {
+  margin: 0 0 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.2rem;
+  color: var(--muted);
+}
+.empty { margin: 0; color: var(--muted); }
+.post { padding: 0 0 2.5rem; margin-bottom: 2.5rem; border-bottom: 1px solid var(--line); }
+.post time {
+  font-size: .75rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+}
+.post h2 { margin: .3rem 0 .8rem; font-family: var(--serif); font-weight: 400; font-size: 1.7rem; line-height: 1.2; }
+.post p { margin: 0 0 1rem; color: #4a4b45; }
+.post img { display: block; width: 100%; border-radius: 10px; margin-top: 1rem; }
+
+/* ------------------------------------------------------------------
    Phones
    ------------------------------------------------------------------ */
 @media (max-width: 760px) {
@@ -184,6 +248,7 @@ a { color: inherit; text-decoration: none; }
   .layout { grid-template-columns: 1fr; gap: 2.5rem; padding: 1rem 16px 3.5rem; }
   .portrait { max-width: 260px; margin-left: 24px; }
   .foot { padding: 20px 16px 26px; }
+  .misc { padding: 1.5rem 16px 3.5rem; }
 }
 
 /* ------------------------------------------------------------------
@@ -198,9 +263,10 @@ a { color: inherit; text-decoration: none; }
   height: 100%;
   z-index: 20;
   cursor: pointer;
+  background: #f4f2ec;
   transition: opacity 1s ease, transform 1.4s cubic-bezier(.2,.7,.2,1);
 }
-.intro .genesis.open { opacity: 0; transform: scale(1.08); }
+.intro .genesis.open { opacity: 0; transform: scale(1.03); }
 
 .intro [data-rise] { opacity: 0; transform: translateY(12px); }
 .intro [data-rise].on {
