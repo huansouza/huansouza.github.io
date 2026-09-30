@@ -81,7 +81,8 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* Portrait in an arched frame */
-.portrait { position: relative; margin: 0; }
+.portrait { margin: 0; }
+.photo { position: relative; }
 .arch {
   aspect-ratio: 4 / 5;
   overflow: hidden;
@@ -89,7 +90,29 @@ a { color: inherit; text-decoration: none; }
   background: var(--paper-2);
   box-shadow: 0 1px 0 var(--line), 0 30px 60px -40px rgba(60, 70, 50, .35);
 }
-.arch img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.arch img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 78%; }
+
+.quote {
+  margin: 1.6rem 0 0;
+  padding-left: 1rem;
+  border-left: 1px solid var(--sage);
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: #4a4b45;
+}
+.quote span {
+  display: block;
+  margin-top: .4rem;
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: .75rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
 
 .sprig {
   position: absolute;
